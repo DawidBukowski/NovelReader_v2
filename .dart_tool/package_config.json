@@ -932,7 +932,7 @@
       "languageVersion": "3.4"
     },
     {
-      "name": "OpenReader",
+      "name": "open_reader",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.3"

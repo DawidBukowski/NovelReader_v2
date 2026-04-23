@@ -1,4 +1,4 @@
-name: OpenReader
+name: open_reader
 description: >
   OpenReader — A private, offline Voice Aloud Reader powered by
   high-quality Neural AI voices (sherpa_onnx) running entirely on-device.

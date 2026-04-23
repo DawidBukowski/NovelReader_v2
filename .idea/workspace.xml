@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scaffold.sh" afterDir="false" />
+    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="nie działający krok 1">
+      <change afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/tts_player/domain/usecases/usecases.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dart_tool/package_graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_graph.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/domain/entities/player_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/domain/entities/player_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/domain/entities/sentence_segment.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/domain/entities/sentence_segment.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/domain/entities/voice_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/domain/entities/voice_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/domain/repositories/tts_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/domain/repositories/tts_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/domain/repositories/voice_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/domain/repositories/voice_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +40,13 @@
       <entry key="agent-panel" value="GPT-4.1" />
       <entry key="chat-panel" value="GPT-4.1" />
     </selectedModels>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,6 +77,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
@@ -70,6 +89,7 @@
     "com.google.services.firebase.aqiPopupShown": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "main",
+    "io.flutter.project.isFirstOpen": "true",
     "kotlin-language-version-configured": "true",
     "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "flutter.settings",
@@ -82,6 +102,12 @@
       <recent name="C:\Users\dawib\StudioProjects\NovelReader_v2\lib" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="" />
@@ -90,7 +116,20 @@
       <option name="presentableId" value="Default" />
       <updated>1776935207714</updated>
     </task>
+    <task id="LOCAL-00001" summary="nie działający krok 1">
+      <option name="closed" value="true" />
+      <created>1776941377981</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1776941377981</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="nie działający krok 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="nie działający krok 1" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
