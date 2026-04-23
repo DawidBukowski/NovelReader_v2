@@ -1,0 +1,96 @@
+name: OpenReader
+description: >
+  OpenReader — A private, offline Voice Aloud Reader powered by
+  high-quality Neural AI voices (sherpa_onnx) running entirely on-device.
+version: 1.0.0+1
+
+publish_to: "none"
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.22.0"
+
+# ─────────────────────────────────────────────────────────────
+# DEPENDENCIES
+# ─────────────────────────────────────────────────────────────
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # ── State Management & DI ─────────────────────────────────
+  flutter_riverpod: ^2.5.1          # Core Riverpod for Flutter
+  riverpod_annotation: ^2.3.5       # Annotations for code-gen providers
+
+  # ── Navigation ────────────────────────────────────────────
+  go_router: ^14.2.7                # Declarative routing
+
+  # ── TTS Engine (Offline Neural AI) ────────────────────────
+  # sherpa_onnx provides ONNX-based neural TTS/ASR entirely offline.
+  # Models are NOT bundled; they are downloaded/imported at runtime.
+  sherpa_onnx: ^1.10.21
+
+  # ── Audio Playback & Background Service ───────────────────
+  just_audio: ^0.9.40               # Low-level audio player (PCM / file)
+  audio_service: ^0.18.13           # Background audio + lock-screen controls
+  # just_audio_background is intentionally omitted; audio_service is used
+  # directly for full control over MediaItem and playback state.
+
+  # ── Local Database ─────────────────────────────────────────
+  # Isar is chosen over Drift for its zero-config Flutter integration,
+  # binary speed, and built-in full-text search.
+  isar: ^3.1.0+1
+  isar_flutter_libs: ^3.1.0+1       # Pre-built native libs (no NDK needed)
+  path_provider: ^2.1.3             # ApplicationDocumentsDirectory
+
+  # ── Networking & Web Scraping ──────────────────────────────
+  http: ^1.2.1                      # HTTP client for remote JSON + HTML fetch
+  html: ^0.15.4                     # HTML parser (used for Readability logic)
+
+  # ── File Handling ──────────────────────────────────────────
+  file_picker: ^8.0.7               # Import local .zip voice model packs
+  archive: ^3.6.1                   # Unzip .zip voice packs in-memory
+  path: ^1.9.0                      # Cross-platform path manipulation
+
+  # ── Data Classes & Serialization ──────────────────────────
+  freezed_annotation: ^2.4.1        # @freezed immutable value objects
+  json_annotation: ^4.9.0           # @JsonSerializable
+
+  # ── Utilities ─────────────────────────────────────────────
+  rxdart: ^0.28.0                   # BehaviorSubject / stream operators
+  uuid: ^4.4.0                      # Unique IDs for saved articles
+  share_plus: ^9.0.0                # Share article text externally
+  url_launcher: ^6.3.0              # Open source URL in browser
+  intl: ^0.19.0                     # Date/time formatting in library view
+  flutter_slidable: ^3.1.0          # Swipe-to-delete in library list
+  cached_network_image: ^3.3.1      # Voice avatar / cover thumbnails
+
+# ─────────────────────────────────────────────────────────────
+# DEV DEPENDENCIES
+# ─────────────────────────────────────────────────────────────
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # ── Code Generation ────────────────────────────────────────
+  build_runner: ^2.4.11             # Orchestrates all code-gen below
+  riverpod_generator: ^2.4.0        # Generates @riverpod providers
+  isar_generator: ^3.1.0+1          # Generates Isar collection schemas
+  freezed: ^2.5.2                   # Generates copyWith / pattern-match
+  json_serializable: ^6.8.0         # Generates fromJson / toJson
+
+  # ── Linting ────────────────────────────────────────────────
+  flutter_lints: ^4.0.0
+
+# ─────────────────────────────────────────────────────────────
+# FLUTTER CONFIG
+# ─────────────────────────────────────────────────────────────
+flutter:
+  uses-material-design: true
+
+  # Assets declared here are ONLY static UI assets (icons, placeholder images).
+  # TTS model files (.onnx / .json) are stored in ApplicationDocumentsDirectory
+  # at runtime — they must NOT be bundled inside the APK/IPA.
+  assets:
+    - assets/images/
+    - assets/icons/
+    # Remote voice catalogue JSON is fetched at runtime, NOT bundled.
