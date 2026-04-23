@@ -16,6 +16,7 @@ import '../../domain/entities/voice_model.dart';
 import '../../domain/repositories/tts_repository.dart';
 import '../audio/audio_service_handler.dart';
 import '../datasources/sherpa_onnx_service.dart';
+import 'package:audio_service/audio_service.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // SENTENCE TOKENISER
@@ -127,8 +128,12 @@ class TtsRepositoryImpl implements TtsRepository {
 
     // Update lock screen / notification metadata.
     _audioHandler.updateMediaItem(
-      title: articleTitle,
-      artist: articleSourceUrl,
+      MediaItem(
+        id: 'current_article', // unikalne ID
+        title: articleTitle,
+        artist: articleSourceUrl,
+        album: 'OpenReader',
+      ),
     );
 
     // Kick off lookahead synthesis for the first N segments.

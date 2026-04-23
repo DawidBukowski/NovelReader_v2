@@ -9,6 +9,8 @@
 //   - Deleting / selecting a voice
 // =============================================================================
 
+import '../../domain/entities/voice_model.dart';
+
 /// Interface for managing TTS voice model assets.
 ///
 /// Implementation in [tts_player/data/repositories/voice_repository_impl.dart]

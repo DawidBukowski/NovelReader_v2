@@ -9,6 +9,8 @@
 // BOOTSTRAP — sent once when the Isolate is first spawned
 // ─────────────────────────────────────────────────────────────────────────────
 
+import 'dart:isolate';
+
 /// Bootstraps the sherpa_onnx engine inside the Isolate.
 /// Sent as the very first message after the Isolate sends back its [SendPort].
 class IsolateBootstrapMessage {

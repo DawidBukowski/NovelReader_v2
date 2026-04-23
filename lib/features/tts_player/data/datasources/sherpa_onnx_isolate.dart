@@ -149,7 +149,6 @@ sherpa.OfflineTts _createTtsEngine({
             provider: 'cpu',
           ),
           ruleFsts: '',
-          maxNumSentences: 1,
         ),
       );
 
@@ -169,7 +168,6 @@ sherpa.OfflineTts _createTtsEngine({
             provider: 'cpu',
           ),
           ruleFsts: '',
-          maxNumSentences: 1,
         ),
       );
 
@@ -191,7 +189,6 @@ sherpa.OfflineTts _createTtsEngine({
             provider: 'cpu',
           ),
           ruleFsts: '',
-          maxNumSentences: 1,
         ),
       );
 

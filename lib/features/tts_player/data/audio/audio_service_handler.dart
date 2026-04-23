@@ -63,14 +63,10 @@ class OpenReaderAudioHandler extends BaseAudioHandler {
   // ── Metadata ───────────────────────────────────────────────────────────────
 
   /// Call this when a new article is loaded to update the lock screen card.
-  void updateMediaItem({required String title, required String artist}) {
-    mediaItem.add(MediaItem(
-      id: 'open_reader_current',
-      title: title,
-      artist: artist,
-      album: 'OpenReader',
-      playable: true,
-    ));
+  /// @Override
+  @override
+  Future<void> updateMediaItem(MediaItem item) async {
+    mediaItem.add(item);
   }
 
   // ── State sync ─────────────────────────────────────────────────────────────
