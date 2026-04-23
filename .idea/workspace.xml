@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="niekompletny krok 2 , dart run build_runner build --delete-conflicting-outputs : wyrzuca 5 [SEVERE]">
+    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="naprawa błędów">
+      <change afterPath="$PROJECT_DIR$/lib/core/database/isar_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/audio/audio_service_handler.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/audio/audio_service_handler.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/isolate_messages.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/isolate_messages.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/domain/repositories/voice_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/domain/repositories/voice_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,14 +137,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776946100434</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="naprawa błędów">
+      <option name="closed" value="true" />
+      <created>1776950569506</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1776950569506</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="nie działający krok 1" />
     <MESSAGE value="gotowy krok 2" />
     <MESSAGE value="niekompletny krok 2 , dart run build_runner build --delete-conflicting-outputs : wyrzuca 5 [SEVERE]" />
-    <option name="LAST_COMMIT_MESSAGE" value="niekompletny krok 2 , dart run build_runner build --delete-conflicting-outputs : wyrzuca 5 [SEVERE]" />
+    <MESSAGE value="naprawa błędów" />
+    <option name="LAST_COMMIT_MESSAGE" value="naprawa błędów" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

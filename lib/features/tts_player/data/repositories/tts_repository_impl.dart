@@ -66,7 +66,11 @@ class TtsRepositoryImpl implements TtsRepository {
     required SherpaOnnxService synthesisService,
     required OpenReaderAudioHandler audioHandler,
   })  : _synth = synthesisService,
-        _audioHandler = audioHandler;
+        _audioHandler = audioHandler{
+    _audioHandler.onPlayCompleted = () => skipNext();
+    _audioHandler.onSkipNext = () => skipNext();
+    _audioHandler.onSkipPrevious = () => skipPrevious();
+  }
 
   final SherpaOnnxService _synth;
   final OpenReaderAudioHandler _audioHandler;
