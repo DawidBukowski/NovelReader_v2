@@ -369,7 +369,7 @@
     },
     {
       "name": "sherpa_onnx",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "ffi",
         "flutter",
@@ -1160,56 +1160,56 @@
     },
     {
       "name": "sherpa_onnx_ios",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "sherpa_onnx_windows",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "sherpa_onnx_linux",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "sherpa_onnx_macos",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "sherpa_onnx_android_x86_64",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "sherpa_onnx_android_x86",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "sherpa_onnx_android_armeabi",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]
     },
     {
       "name": "sherpa_onnx_android_arm64",
-      "version": "1.12.39",
+      "version": "1.12.40",
       "dependencies": [
         "flutter"
       ]

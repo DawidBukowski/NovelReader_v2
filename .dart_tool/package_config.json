@@ -645,55 +645,55 @@
     },
     {
       "name": "sherpa_onnx",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.1"
     },
     {
       "name": "sherpa_onnx_android_arm64",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_arm64-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_arm64-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "sherpa_onnx_android_armeabi",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_armeabi-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_armeabi-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "sherpa_onnx_android_x86",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_x86-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_x86-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "sherpa_onnx_android_x86_64",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_x86_64-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_android_x86_64-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "sherpa_onnx_ios",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_ios-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_ios-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "sherpa_onnx_linux",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_linux-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_linux-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "sherpa_onnx_macos",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_macos-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_macos-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
     {
       "name": "sherpa_onnx_windows",
-      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_windows-1.12.39",
+      "rootUri": "file:///C:/Users/dawib/AppData/Local/Pub/Cache/hosted/pub.dev/sherpa_onnx_windows-1.12.40",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
