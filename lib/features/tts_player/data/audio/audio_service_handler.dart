@@ -18,21 +18,21 @@ import 'package:just_audio/just_audio.dart';
 import '../../domain/entities/player_state.dart';
 
 class OpenReaderAudioHandler extends BaseAudioHandler {
-  OpenReaderAudioHandler() {
-    // Set up just_audio player event forwarding.
-    _player.playbackEventStream.listen(_onPlaybackEvent);
-    _player.playerStateStream.listen(_onPlayerStateChanged);
-  }
+  OpenReaderAudioHandler();
 
   final AudioPlayer _player = AudioPlayer();
 
-  // Injected callbacks — set by TtsRepositoryImpl after construction.
-  // Using callbacks avoids a circular dependency between the handler and repo.
   VoidCallback? onSkipNext;
   VoidCallback? onSkipPrevious;
   VoidCallback? onPlayCompleted;
 
   Duration get currentPosition => _player.position;
+
+  // Called by ttsRepositoryProvider AFTER init completes — not in constructor.
+  void setupListeners() {
+    _player.playbackEventStream.listen(_onPlaybackEvent);
+    _player.playerStateStream.listen(_onPlayerStateChanged);
+  }
 
   // ── Playback ───────────────────────────────────────────────────────────────
 

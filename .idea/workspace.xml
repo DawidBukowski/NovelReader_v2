@@ -9,12 +9,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="naprawa błędów">
-      <change afterPath="$PROJECT_DIR$/lib/core/database/isar_provider.dart" afterDir="false" />
+    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="śmieci">
+      <change afterPath="$PROJECT_DIR$/lib/core/audio/audio_handler_provider.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/core/router/stub_screens.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/database/isar_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/database/isar_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/database/isar_provider.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/database/isar_provider.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/router/app_router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/router/app_router.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/core/router/app_router.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/router/app_router.g.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/audio/audio_service_handler.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/audio/audio_service_handler.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,8 +43,8 @@
   </component>
   <component name="CopilotUserSelectedModel">
     <selectedModels>
-      <entry key="agent-panel" value="GPT-4.1" />
-      <entry key="chat-panel" value="GPT-4.1" />
+      <entry key="agent-panel" value="Claude Haiku 4.5" />
+      <entry key="chat-panel" value="Claude Haiku 4.5" />
     </selectedModels>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -89,7 +98,7 @@
     &quot;io.flutter.project.isFirstOpen&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;flutter.settings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
@@ -145,7 +154,23 @@
       <option name="project" value="LOCAL" />
       <updated>1776950569506</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="brakuje już tylko providerów (chyba)">
+      <option name="closed" value="true" />
+      <created>1776951722741</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1776951722741</updated>
+    </task>
+    <task id="LOCAL-00006" summary="śmieci">
+      <option name="closed" value="true" />
+      <created>1776951803991</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1776951803991</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -153,7 +178,9 @@
     <MESSAGE value="gotowy krok 2" />
     <MESSAGE value="niekompletny krok 2 , dart run build_runner build --delete-conflicting-outputs : wyrzuca 5 [SEVERE]" />
     <MESSAGE value="naprawa błędów" />
-    <option name="LAST_COMMIT_MESSAGE" value="naprawa błędów" />
+    <MESSAGE value="brakuje już tylko providerów (chyba)" />
+    <MESSAGE value="śmieci" />
+    <option name="LAST_COMMIT_MESSAGE" value="śmieci" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
