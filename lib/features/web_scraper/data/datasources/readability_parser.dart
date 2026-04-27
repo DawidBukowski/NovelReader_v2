@@ -1,29 +1,73 @@
-// lib/features/web_scraper/data/datasources/readability_parser.dart
-// A pure-Dart Readability-style article extractor using the html package.
-// =============================================================================
-
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' as html_parser;
 
 class ReadabilityParser {
   static const _blockTags = {
-    'p', 'div', 'article', 'section', 'h1', 'h2', 'h3',
-    'h4', 'h5', 'h6', 'li', 'td', 'blockquote', 'pre',
+    'p',
+    'div',
+    'article',
+    'section',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'li',
+    'td',
+    'blockquote',
+    'pre',
   };
 
   static const _noiseTags = {
-    'script', 'style', 'nav', 'header', 'footer', 'aside',
-    'form', 'button', 'iframe', 'figure', 'figcaption',
-    'advertisement', 'ad',
+    'script',
+    'style',
+    'nav',
+    'header',
+    'footer',
+    'aside',
+    'form',
+    'button',
+    'iframe',
+    'figure',
+    'figcaption',
+    'advertisement',
+    'ad',
   };
 
   static const _noiseClasses = {
-    'nav', 'menu', 'sidebar', 'footer', 'header', 'ad',
-    'advertisement', 'cookie', 'popup', 'modal', 'banner',
-    'related', 'share', 'social', 'comment', 'newsletter',
+    'nav',
+    'menu',
+    'sidebar',
+    'footer',
+    'header',
+    'ad',
+    'advertisement',
+    'cookie',
+    'popup',
+    'modal',
+    'banner',
+    'related',
+    'share',
+    'social',
+    'comment',
+    'newsletter',
   };
 
-  /// Returns a (title, plainText) tuple extracted from raw HTML.
+  static const _preferredContentSelectors = [
+    'article',
+    'main',
+    '[role="main"]',
+    '.entry-content',
+    '.post-content',
+    '.chapter-content',
+    '.chapter-body',
+    '.reading-content',
+    '#chapter-content',
+    '#content',
+    '.content',
+  ];
+
   (String title, String body) parse(String rawHtml) {
     final doc = html_parser.parse(rawHtml);
 
@@ -31,21 +75,36 @@ class ReadabilityParser {
     _removeNoise(doc);
 
     final candidate = _findContentNode(doc);
-    final text = _extractText(candidate ?? doc.body!);
+    final root = candidate ?? doc.body ?? doc.documentElement;
+    if (root == null) {
+      throw Exception('Could not parse HTML document body.');
+    }
 
-    return (title, text.trim());
+    var text = _extractText(root);
+    if (text.length < 300) {
+      final fallback = _extractFromParagraphs(doc);
+      if (fallback.length > text.length) {
+        text = fallback;
+      }
+    }
+
+    final normalized = text.trim();
+    if (normalized.length < 120) {
+      throw Exception(
+        'Could not extract article content. The page may require JavaScript or block bots.',
+      );
+    }
+
+    return (title, normalized);
   }
 
   String _extractTitle(Document doc) {
-    // Prefer <meta property="og:title"> then <title> then first <h1>.
-    final ogTitle = doc
-        .querySelector('meta[property="og:title"]')
-        ?.attributes['content'];
+    final ogTitle =
+        doc.querySelector('meta[property="og:title"]')?.attributes['content'];
     if (ogTitle != null && ogTitle.trim().isNotEmpty) return ogTitle.trim();
 
     final titleTag = doc.querySelector('title')?.text;
     if (titleTag != null && titleTag.trim().isNotEmpty) {
-      // Strip site name suffix (e.g. "Article Title | Site Name")
       return titleTag.split(RegExp(r'[|\-–—]')).first.trim();
     }
 
@@ -54,31 +113,35 @@ class ReadabilityParser {
 
   void _removeNoise(Document doc) {
     for (final tag in _noiseTags) {
-      doc.querySelectorAll(tag).forEach((el) => el.remove());
+      for (final el in doc.querySelectorAll(tag)) {
+        el.remove();
+      }
     }
-    // Remove elements whose class/id contains noise keywords.
-    doc.querySelectorAll('[class],[id]').forEach((el) {
+
+    for (final el in doc.querySelectorAll('[class],[id]')) {
       final combined =
-      '${el.attributes['class'] ?? ''} ${el.attributes['id'] ?? ''}'
-          .toLowerCase();
+          '${el.attributes['class'] ?? ''} ${el.attributes['id'] ?? ''}'
+              .toLowerCase();
       if (_noiseClasses.any((n) => combined.contains(n))) {
         el.remove();
       }
-    });
+    }
   }
 
-  /// Score block elements and pick the one with the most text content.
   Element? _findContentNode(Document doc) {
+    for (final selector in _preferredContentSelectors) {
+      final el = doc.querySelector(selector);
+      if (el == null) continue;
+      final t = el.text.trim();
+      if (t.length >= 200) return el;
+    }
+
     Element? bestEl;
     int bestScore = 0;
 
-    for (final tag in ['article', 'main', '[role="main"]']) {
-      final el = doc.querySelector(tag);
-      if (el != null) return el; // semantic tags win immediately
-    }
-
     for (final el in doc.querySelectorAll('div,section')) {
       final text = el.text.trim();
+      if (text.isEmpty) continue;
       final wordCount = text.split(RegExp(r'\s+')).length;
       final linkDensity = _linkDensity(el, text.length);
       final score = (wordCount * (1 - linkDensity)).round();
@@ -88,26 +151,32 @@ class ReadabilityParser {
       }
     }
 
-    return bestScore > 100 ? bestEl : null;
+    return bestScore > 60 ? bestEl : null;
   }
 
   double _linkDensity(Element el, int totalLen) {
     if (totalLen == 0) return 0;
-    final linkText = el
+    final linkTextLen = el
         .querySelectorAll('a')
         .map((a) => a.text.length)
-        .fold(0, (a, b) => a + b);
-    return linkText / totalLen;
+        .fold<int>(0, (a, b) => a + b);
+    return linkTextLen / totalLen;
+  }
+
+  String _extractFromParagraphs(Document doc) {
+    final paragraphs = doc
+        .querySelectorAll('p')
+        .map((p) => p.text.replaceAll(RegExp(r'\s+'), ' ').trim())
+        .where((t) => t.length > 40)
+        .toList();
+
+    return paragraphs.join('\n\n').trim();
   }
 
   String _extractText(Element root) {
     final buffer = StringBuffer();
     _walk(root, buffer);
-    // Collapse multiple blank lines into one.
-    return buffer
-        .toString()
-        .replaceAll(RegExp(r'\n{3,}'), '\n\n')
-        .trim();
+    return buffer.toString().replaceAll(RegExp(r'\n{3,}'), '\n\n').trim();
   }
 
   void _walk(Element el, StringBuffer buf) {
@@ -128,4 +197,3 @@ class ReadabilityParser {
     }
   }
 }
-

@@ -9,36 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="nieskończony step 5 , zabrakło mi tokenów">
-      <change afterPath="$PROJECT_DIR$/lib/features/library/data/repositories/library_repository_impl.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/first_launch_provider.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/readability_parser.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/features/web_scraper/presentation/providers/scraper_providers.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="projekt bez errorów">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/database/isar_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/database/isar_provider.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/database/isar_provider.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/database/isar_provider.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/router/app_router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/router/app_router.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/library/data/models/saved_article_dto.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/library/data/models/saved_article_dto.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/library/data/models/saved_article_dto.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/library/data/models/saved_article_dto.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/library/domain/entities/saved_article.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/library/domain/entities/saved_article.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/library/domain/repositories/library_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/library/domain/repositories/library_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/library/presentation/providers/library_providers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/library/presentation/providers/library_providers.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/library/presentation/providers/library_providers.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/library/presentation/providers/library_providers.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/library/presentation/screens/library_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/library/presentation/screens/library_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/settings/presentation/screens/settings_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/settings/presentation/screens/settings_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/models/voice_model_dto.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/models/voice_model_dto.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/voice_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/voice_repository_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.g.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.g.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/player_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/player_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/voice_manager_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/voice_manager_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/html_fetcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/html_fetcher.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/readability_parser.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/readability_parser.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/presentation/screens/add_url_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/presentation/screens/add_url_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/presentation/screens/add_url_screen.g.dart" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +176,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777051428803</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="projekt bez errorów">
+      <option name="closed" value="true" />
+      <created>1777289737286</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1777289737286</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -213,7 +196,8 @@
     <MESSAGE value="śmieci" />
     <MESSAGE value="wszystko z kroku 4 działa" />
     <MESSAGE value="nieskończony step 5 , zabrakło mi tokenów" />
-    <option name="LAST_COMMIT_MESSAGE" value="nieskończony step 5 , zabrakło mi tokenów" />
+    <MESSAGE value="projekt bez errorów" />
+    <option name="LAST_COMMIT_MESSAGE" value="projekt bez errorów" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

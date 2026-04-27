@@ -27,6 +27,20 @@ class _AddUrlScreenState extends ConsumerState<AddUrlScreen> {
     super.dispose();
   }
 
+  String _friendlyError(Object e) {
+    final msg = e.toString();
+    if (msg.contains('JavaScript') || msg.contains('block bots')) {
+      return 'Nie udało się pobrać treści. Ta strona może wymagać JavaScript lub blokować boty.';
+    }
+    if (msg.contains('HTTP')) {
+      return 'Nie udało się pobrać strony (błąd HTTP).';
+    }
+    if (msg.contains('empty')) {
+      return 'Strona zwróciła pustą treść.';
+    }
+    return 'Nie udało się pobrać i zapisać artykułu.';
+  }
+
   Future<void> _fetch() async {
     if (!_formKey.currentState!.validate()) return;
 
@@ -46,7 +60,7 @@ class _AddUrlScreenState extends ConsumerState<AddUrlScreen> {
         );
       }
     } catch (e) {
-      setState(() => _errorMessage = e.toString());
+      setState(() => _errorMessage = _friendlyError(e));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
