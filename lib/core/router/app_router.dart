@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-// Screens — to be implemented in Steps 5 & 6
-// Importing here now locks the contract so route names don't drift.
-import 'stub_screens.dart';
+import '../../features/library/presentation/screens/library_screen.dart';
+import '../../features/tts_player/presentation/screens/player_screen.dart';
+import '../../features/tts_player/presentation/screens/voice_manager_screen.dart';
+import '../../features/web_scraper/presentation/screens/add_url_screen.dart';
+import '../../features/settings/presentation/screens/settings_screen.dart';
+
 
 part 'app_router.g.dart';
 

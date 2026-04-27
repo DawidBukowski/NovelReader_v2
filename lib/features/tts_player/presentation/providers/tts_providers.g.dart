@@ -8,10 +8,7 @@ part of 'tts_providers.dart';
 
 String _$sherpaOnnxServiceHash() => r'41137affc6c2a3be42275d8ba1692c99efa4ddf7';
 
-/// The sherpa_onnx synthesis service.
-/// keepAlive: true — the Isolate must survive screen navigation.
-///
-/// Copied from [sherpaOnnxService].
+/// See also [sherpaOnnxService].
 @ProviderFor(sherpaOnnxService)
 final sherpaOnnxServiceProvider = Provider<SherpaOnnxService>.internal(
   sherpaOnnxService,
@@ -26,9 +23,7 @@ final sherpaOnnxServiceProvider = Provider<SherpaOnnxService>.internal(
 typedef SherpaOnnxServiceRef = ProviderRef<SherpaOnnxService>;
 String _$voiceRepositoryHash() => r'02b30fa41ad148f5511e77ac45ad778d4500f716';
 
-/// Voice management repository (download, import, persist).
-///
-/// Copied from [voiceRepository].
+/// See also [voiceRepository].
 @ProviderFor(voiceRepository)
 final voiceRepositoryProvider = FutureProvider<VoiceRepository>.internal(
   voiceRepository,
@@ -41,12 +36,9 @@ final voiceRepositoryProvider = FutureProvider<VoiceRepository>.internal(
 );
 
 typedef VoiceRepositoryRef = FutureProviderRef<VoiceRepository>;
-String _$ttsRepositoryHash() => r'a1f53a6e617bcd24ff3ce51d43536e0ca18da2a6';
+String _$ttsRepositoryHash() => r'0ccba1da8d681257e7d0ad24276235c57d889cff';
 
-/// TTS playback repository — the synthesis + state pipeline.
-/// keepAlive: true — must not reset mid-playback on navigation.
-///
-/// Copied from [ttsRepository].
+/// See also [ttsRepository].
 @ProviderFor(ttsRepository)
 final ttsRepositoryProvider = FutureProvider<TtsRepository>.internal(
   ttsRepository,
@@ -61,11 +53,7 @@ final ttsRepositoryProvider = FutureProvider<TtsRepository>.internal(
 typedef TtsRepositoryRef = FutureProviderRef<TtsRepository>;
 String _$playerStateHash() => r'1dba23e1d71f249ef6c8972aa67432ba2f2a3386';
 
-/// Live [TtsPlayerState] stream — the single source of truth for the player UI.
-/// Rebuilds the player screen only when the state object itself changes
-/// (Freezed equality prevents spurious rebuilds).
-///
-/// Copied from [playerState].
+/// See also [playerState].
 @ProviderFor(playerState)
 final playerStateProvider = AutoDisposeStreamProvider<TtsPlayerState>.internal(
   playerState,
@@ -79,10 +67,7 @@ final playerStateProvider = AutoDisposeStreamProvider<TtsPlayerState>.internal(
 typedef PlayerStateRef = AutoDisposeStreamProviderRef<TtsPlayerState>;
 String _$selectedVoiceHash() => r'bf450428a6f0243accc5376ca0063f96bb5228a1';
 
-/// The currently selected [VoiceModel], or null on first launch.
-/// Watched by the player header and the voice picker button.
-///
-/// Copied from [selectedVoice].
+/// See also [selectedVoice].
 @ProviderFor(selectedVoice)
 final selectedVoiceProvider = AutoDisposeFutureProvider<VoiceModel?>.internal(
   selectedVoice,
@@ -97,11 +82,7 @@ final selectedVoiceProvider = AutoDisposeFutureProvider<VoiceModel?>.internal(
 typedef SelectedVoiceRef = AutoDisposeFutureProviderRef<VoiceModel?>;
 String _$voiceListHash() => r'87cf11f1d39808e162c41b94d23a538c97adce1b';
 
-/// Full voice list — merges remote catalogue with local models.
-/// Refreshed by calling `ref.invalidate(voiceListProvider)` after
-/// any download / import / delete action.
-///
-/// Copied from [voiceList].
+/// See also [voiceList].
 @ProviderFor(voiceList)
 final voiceListProvider = AutoDisposeFutureProvider<List<VoiceModel>>.internal(
   voiceList,
@@ -115,10 +96,7 @@ final voiceListProvider = AutoDisposeFutureProvider<List<VoiceModel>>.internal(
 typedef VoiceListRef = AutoDisposeFutureProviderRef<List<VoiceModel>>;
 String _$downloadProgressHash() => r'dd2169ec85ec9134a005cb0bd0d47a94025b95e6';
 
-/// Live download progress map: voiceId → 0.0–1.0.
-/// Only emits when a download is actually in progress.
-///
-/// Copied from [downloadProgress].
+/// See also [downloadProgress].
 @ProviderFor(downloadProgress)
 final downloadProgressProvider =
     AutoDisposeStreamProvider<Map<String, double>>.internal(

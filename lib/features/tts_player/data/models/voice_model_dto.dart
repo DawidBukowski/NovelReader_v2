@@ -1,12 +1,7 @@
 // lib/features/tts_player/data/models/voice_model_dto.dart
-//
-// Isar collection that persists VoiceModel to local storage.
-// Domain entities are immutable and must NOT reference Isar — the DTO
-// acts as the adapter between the two worlds.
-// =============================================================================
+
 
 import 'package:isar/isar.dart';
-
 import '../../domain/entities/voice_model.dart';
 
 part 'voice_model_dto.g.dart';

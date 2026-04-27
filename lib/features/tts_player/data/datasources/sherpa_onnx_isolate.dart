@@ -1,10 +1,4 @@
 // lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart
-//
-// ⚠️  This file runs ENTIRELY inside a background Dart Isolate.
-//     It must NOT import any Flutter widgets, Riverpod providers, or
-//     anything that touches the UI thread.
-//     All sherpa_onnx synthesis happens here.
-// =============================================================================
 
 import 'dart:io';
 import 'dart:isolate';
@@ -15,17 +9,12 @@ import 'package:sherpa_onnx/sherpa_onnx.dart' as sherpa;
 import 'isolate_messages.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ISOLATE ENTRY POINT
-// Must be a top-level function (not a closure) for Isolate.spawn().
+// ENTRY POINT
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// Entry point for the synthesis Isolate.
-/// [rootSendPort] is the [SendPort] of the main isolate — used to send
-/// responses back.
 void sherpaOnnxIsolateEntryPoint(SendPort rootSendPort) {
   final receivePort = ReceivePort();
 
-  // ① Immediately hand our SendPort back so the main isolate can send requests.
   rootSendPort.send({
     IsolateMessage.kType: IsolateMessage.kReady,
     'sendPort': receivePort.sendPort,
@@ -34,9 +23,9 @@ void sherpaOnnxIsolateEntryPoint(SendPort rootSendPort) {
   sherpa.OfflineTts? tts;
   double currentSpeed = 1.0;
 
-  receivePort.listen((dynamic rawMessage) async {
-    if (rawMessage is! Map) return;
-    final msg = rawMessage as Map<String, dynamic>;
+  receivePort.listen((dynamic raw) {
+    if (raw is! Map) return;
+    final msg = raw as Map<String, dynamic>;
     final type = msg[IsolateMessage.kType] as String;
 
     switch (type) {
@@ -44,65 +33,67 @@ void sherpaOnnxIsolateEntryPoint(SendPort rootSendPort) {
       case IsolateMessage.kBootstrap:
         try {
           currentSpeed = (msg['speed'] as num).toDouble();
-          final architecture = msg['architecture'] as String;
-          tts = _createTtsEngine(
-            architecture: architecture,
+          tts = _buildEngine(
+            architecture: msg['architecture'] as String,
             onnxModelPath: msg['onnxModelPath'] as String,
             configJsonPath: msg['configJsonPath'] as String,
+            voiceDir: msg['voiceDir'] as String,
             speakerId: msg['speakerId'] as int,
           );
-        } catch (e) {
-          // If the engine fails to initialise, all subsequent synthesis
-          // requests will fail gracefully via the null-check below.
+        } catch (e, st) {
           rootSendPort.send({
             IsolateMessage.kType: IsolateMessage.kSegmentError,
             'segmentIndex': -1,
-            'error': 'Engine init failed: $e',
+            'error': 'Engine init failed: $e\n$st',
           });
         }
 
-    // ── Synthesise one segment ─────────────────────────────────────────────
+    // ── Synthesise ─────────────────────────────────────────────────────────
       case IsolateMessage.kSynthesize:
-        final segmentIndex = msg['segmentIndex'] as int;
+        final idx = msg['segmentIndex'] as int;
         final text = msg['text'] as String;
-        final outputWavPath = msg['outputWavPath'] as String;
+        final outPath = msg['outputWavPath'] as String;
 
         if (tts == null) {
           rootSendPort.send({
             IsolateMessage.kType: IsolateMessage.kSegmentError,
-            'segmentIndex': segmentIndex,
+            'segmentIndex': idx,
             'error': 'TTS engine not initialised',
           });
           return;
         }
 
         try {
+          // lengthScale = 1/speed (lower = faster).
+          final lengthScale =
+          (1.0 / currentSpeed.clamp(0.5, 3.0));
+
           final audio = tts!.generate(
             text: text,
-            sid: 0, // speakerId already baked into engine config
-            speed: currentSpeed,
+            sid: 0,
+            speed: lengthScale,  // sherpa-onnx uses "speed" as lengthScale
           );
 
-          // audio.samples is a Float32List of PCM at audio.sampleRate Hz.
           final durationMs =
-          ((audio.samples.length / audio.sampleRate) * 1000).round();
+          ((audio.samples.length / audio.sampleRate) * 1000)
+              .round();
 
           _writeWav(
-            path: outputWavPath,
+            path: outPath,
             samples: audio.samples,
             sampleRate: audio.sampleRate,
           );
 
           rootSendPort.send({
             IsolateMessage.kType: IsolateMessage.kSegmentReady,
-            'segmentIndex': segmentIndex,
-            'wavFilePath': outputWavPath,
+            'segmentIndex': idx,
+            'wavFilePath': outPath,
             'durationMs': durationMs,
           });
         } catch (e) {
           rootSendPort.send({
             IsolateMessage.kType: IsolateMessage.kSegmentError,
-            'segmentIndex': segmentIndex,
+            'segmentIndex': idx,
             'error': e.toString(),
           });
         }
@@ -121,15 +112,21 @@ void sherpaOnnxIsolateEntryPoint(SendPort rootSendPort) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// ENGINE FACTORY — maps VoiceArchitecture string to sherpa_onnx config
+// ENGINE FACTORY
 // ─────────────────────────────────────────────────────────────────────────────
 
-sherpa.OfflineTts _createTtsEngine({
+sherpa.OfflineTts _buildEngine({
   required String architecture,
   required String onnxModelPath,
-  required String configJsonPath,
+  required String configJsonPath,  // = .onnx.json (tokens file for Piper)
+  required String voiceDir,
   required int speakerId,
 }) {
+  // espeak-ng-data is extracted alongside the model files.
+  // It may or may not exist — Piper models that use phoneme IDs don't need it.
+  final espeakDataDir = '${voiceDir}/espeak-ng-data';
+  final hasEspeak = Directory(espeakDataDir).existsSync();
+
   switch (architecture) {
     case 'vits':
       return sherpa.OfflineTts(
@@ -137,12 +134,12 @@ sherpa.OfflineTts _createTtsEngine({
           model: sherpa.OfflineTtsModelConfig(
             vits: sherpa.OfflineTtsVitsModelConfig(
               model: onnxModelPath,
-              lexicon: '',       // Piper models embed the lexicon in the .onnx
-              tokens: configJsonPath,
-              dataDir: '',
+              lexicon: '',              // Piper doesn't use a separate lexicon
+              tokens: configJsonPath,   // .onnx.json is the tokens file
+              dataDir: hasEspeak ? espeakDataDir : '',
               noiseScale: 0.667,
               noiseScaleW: 0.8,
-              lengthScale: 1.0,  // speed is applied at generate() time
+              lengthScale: 1.0,        // overridden per-utterance in generate()
             ),
             numThreads: 2,
             debug: false,
@@ -159,8 +156,8 @@ sherpa.OfflineTts _createTtsEngine({
             kokoro: sherpa.OfflineTtsKokoroModelConfig(
               model: onnxModelPath,
               voices: configJsonPath,
-              tokens: '',        // Kokoro tokens are embedded in voices file
-              dataDir: '',
+              tokens: '',
+              dataDir: hasEspeak ? espeakDataDir : '',
               lengthScale: 1.0,
             ),
             numThreads: 2,
@@ -177,10 +174,10 @@ sherpa.OfflineTts _createTtsEngine({
           model: sherpa.OfflineTtsModelConfig(
             matcha: sherpa.OfflineTtsMatchaModelConfig(
               acousticModel: onnxModelPath,
-              vocoder: '', // Matcha requires a separate vocoder — path injected via configJsonPath field
+              vocoder: '',
               lexicon: '',
               tokens: configJsonPath,
-              dataDir: '',
+              dataDir: hasEspeak ? espeakDataDir : '',
               noiseScale: 0.667,
               lengthScale: 1.0,
             ),
@@ -193,12 +190,12 @@ sherpa.OfflineTts _createTtsEngine({
       );
 
     default:
-      throw UnsupportedError('Unknown TTS architecture: $architecture');
+      throw UnsupportedError('Unknown architecture: $architecture');
   }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// WAV WRITER — converts Float32 PCM to a valid 16-bit PCM WAV file
+// WAV WRITER
 // ─────────────────────────────────────────────────────────────────────────────
 
 void _writeWav({
@@ -206,53 +203,39 @@ void _writeWav({
   required Float32List samples,
   required int sampleRate,
 }) {
-  // Convert Float32 [-1.0, 1.0] → Int16 [-32768, 32767]
   final pcm16 = Int16List(samples.length);
   for (int i = 0; i < samples.length; i++) {
-    final clamped = samples[i].clamp(-1.0, 1.0);
-    pcm16[i] = (clamped * 32767).round();
+    pcm16[i] = (samples[i].clamp(-1.0, 1.0) * 32767).round();
   }
 
   final pcmBytes = pcm16.buffer.asUint8List();
   final dataSize = pcmBytes.length;
   const numChannels = 1;
   const bitsPerSample = 16;
-  const audioFormat = 1; // PCM
 
   final header = ByteData(44);
-  // RIFF chunk
-  header.setUint8(0, 0x52); // R
-  header.setUint8(1, 0x49); // I
-  header.setUint8(2, 0x46); // F
-  header.setUint8(3, 0x46); // F
-  header.setUint32(4, 36 + dataSize, Endian.little); // ChunkSize
-  header.setUint8(8, 0x57);  // W
-  header.setUint8(9, 0x41);  // A
-  header.setUint8(10, 0x56); // V
-  header.setUint8(11, 0x45); // E
-  // fmt sub-chunk
-  header.setUint8(12, 0x66); // f
-  header.setUint8(13, 0x6D); // m
-  header.setUint8(14, 0x74); // t
-  header.setUint8(15, 0x20); // (space)
-  header.setUint32(16, 16, Endian.little);            // Subchunk1Size
-  header.setUint16(20, audioFormat, Endian.little);   // AudioFormat
-  header.setUint16(22, numChannels, Endian.little);   // NumChannels
-  header.setUint32(24, sampleRate, Endian.little);    // SampleRate
-  header.setUint32(28,
-      sampleRate * numChannels * bitsPerSample ~/ 8, Endian.little); // ByteRate
-  header.setUint16(32,
-      numChannels * bitsPerSample ~/ 8, Endian.little); // BlockAlign
-  header.setUint16(34, bitsPerSample, Endian.little); // BitsPerSample
-  // data sub-chunk
-  header.setUint8(36, 0x64); // d
-  header.setUint8(37, 0x61); // a
-  header.setUint8(38, 0x74); // t
-  header.setUint8(39, 0x61); // a
-  header.setUint32(40, dataSize, Endian.little);      // Subchunk2Size
+  void setStr(int offset, String s) {
+    for (int i = 0; i < s.length; i++) {
+      header.setUint8(offset + i, s.codeUnitAt(i));
+    }
+  }
 
-  final file = File(path);
-  final sink = file.openSync(mode: FileMode.write);
+  setStr(0, 'RIFF');
+  header.setUint32(4, 36 + dataSize, Endian.little);
+  setStr(8, 'WAVE');
+  setStr(12, 'fmt ');
+  header.setUint32(16, 16, Endian.little);
+  header.setUint16(20, 1, Endian.little);               // PCM
+  header.setUint16(22, numChannels, Endian.little);
+  header.setUint32(24, sampleRate, Endian.little);
+  header.setUint32(
+      28, sampleRate * numChannels * bitsPerSample ~/ 8, Endian.little);
+  header.setUint16(32, numChannels * bitsPerSample ~/ 8, Endian.little);
+  header.setUint16(34, bitsPerSample, Endian.little);
+  setStr(36, 'data');
+  header.setUint32(40, dataSize, Endian.little);
+
+  final sink = File(path).openSync(mode: FileMode.write);
   sink.writeFromSync(header.buffer.asUint8List());
   sink.writeFromSync(pcmBytes);
   sink.closeSync();

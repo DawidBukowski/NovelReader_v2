@@ -1,28 +1,8 @@
 // lib/features/tts_player/presentation/providers/tts_providers.dart
-//
-// Complete Riverpod provider graph for the tts_player feature.
-//
-// Dependency tree (top = most fundamental):
-//
-//   isarProvider  audioHandlerProvider
-//        │               │
-//        ▼               ▼
-//  voiceRepositoryProvider   sherpaOnnxServiceProvider
-//        │                           │
-//        ▼                           ▼
-//              ttsRepositoryProvider
-//                       │
-//           ┌───────────┼────────────┐
-//           ▼           ▼            ▼
-//  playerStateProvider  selectedVoiceProvider  ...useCaseProviders
-//           │
-//           ▼
-//      PlayerScreen / VoiceManagerScreen
-//
-// =============================================================================
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/audio/audio_handler_provider.dart';
 import '../../../../core/database/isar_provider.dart';
 import '../../data/datasources/sherpa_onnx_service.dart';
@@ -37,35 +17,25 @@ import '../../domain/usecases/usecases.dart';
 part 'tts_providers.g.dart';
 
 // ─────────────────────────────────────────────────────────────────────────────
-// INFRASTRUCTURE PROVIDERS
+// INFRASTRUCTURE
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// The sherpa_onnx synthesis service.
-/// keepAlive: true — the Isolate must survive screen navigation.
 @Riverpod(keepAlive: true)
 SherpaOnnxService sherpaOnnxService(SherpaOnnxServiceRef ref) {
   final service = SherpaOnnxService();
-
-  // Dispose the Isolate if somehow this provider is ever invalidated.
   ref.onDispose(service.dispose);
-
   return service;
 }
 
-/// Voice management repository (download, import, persist).
 @Riverpod(keepAlive: true)
 Future<VoiceRepository> voiceRepository(VoiceRepositoryRef ref) async {
   final isar = await ref.watch(isarProvider.future);
   return VoiceRepositoryImpl(isar: isar);
 }
 
-/// TTS playback repository — the synthesis + state pipeline.
-/// keepAlive: true — must not reset mid-playback on navigation.
 @Riverpod(keepAlive: true)
 Future<TtsRepository> ttsRepository(TtsRepositoryRef ref) async {
   final synthService = ref.watch(sherpaOnnxServiceProvider);
-
-  // ✅ await the future — AudioService may still be initialising
   final audioHandler = await ref.watch(audioHandlerProvider.future);
 
   audioHandler.setupListeners();
@@ -80,41 +50,40 @@ Future<TtsRepository> ttsRepository(TtsRepositoryRef ref) async {
   audioHandler.onSkipPrevious = () => impl.skipPrevious();
 
   ref.onDispose(impl.dispose);
+
+  // ── Auto-init the Isolate with the currently selected voice ──────────────
+  // This runs once on first build. When the user changes voice,
+  // selectVoiceUseCase calls _reinitialiseEngine() directly (see below).
+  final voice = await ref.watch(selectedVoiceProvider.future);
+  if (voice != null && voice.status == VoiceStatus.local) {
+    await synthService.initialise(voice);
+  }
+
   return impl;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// STATE PROVIDERS  (what the UI directly watches)
+// STATE STREAMS
 // ─────────────────────────────────────────────────────────────────────────────
 
-/// Live [TtsPlayerState] stream — the single source of truth for the player UI.
-/// Rebuilds the player screen only when the state object itself changes
-/// (Freezed equality prevents spurious rebuilds).
 @riverpod
 Stream<TtsPlayerState> playerState(PlayerStateRef ref) async* {
   final repo = await ref.watch(ttsRepositoryProvider.future);
   yield* repo.playerStateStream;
 }
 
-/// The currently selected [VoiceModel], or null on first launch.
-/// Watched by the player header and the voice picker button.
 @riverpod
 Future<VoiceModel?> selectedVoice(SelectedVoiceRef ref) async {
   final repo = await ref.watch(voiceRepositoryProvider.future);
   return repo.getSelectedVoice();
 }
 
-/// Full voice list — merges remote catalogue with local models.
-/// Refreshed by calling `ref.invalidate(voiceListProvider)` after
-/// any download / import / delete action.
 @riverpod
 Future<List<VoiceModel>> voiceList(VoiceListRef ref) async {
   final repo = await ref.watch(voiceRepositoryProvider.future);
   return repo.getAvailableVoices();
 }
 
-/// Live download progress map: voiceId → 0.0–1.0.
-/// Only emits when a download is actually in progress.
 @riverpod
 Stream<Map<String, double>> downloadProgress(DownloadProgressRef ref) async* {
   final repo = await ref.watch(voiceRepositoryProvider.future);
@@ -122,8 +91,19 @@ Stream<Map<String, double>> downloadProgress(DownloadProgressRef ref) async* {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// ENGINE REINIT — called by SelectVoiceUseCase after user picks a new voice
+// ─────────────────────────────────────────────────────────────────────────────
+
+/// Call this after selectVoice() so the Isolate loads the new model.
+Future<void> reinitialiseEngine(WidgetRef ref) async {
+  final voice = await ref.read(selectedVoiceProvider.future);
+  if (voice == null || voice.status != VoiceStatus.local) return;
+  final service = ref.read(sherpaOnnxServiceProvider);
+  await service.initialise(voice);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // USE-CASE PROVIDERS
-// These are thin; they exist so the UI never imports repository concretions.
 // ─────────────────────────────────────────────────────────────────────────────
 
 @riverpod

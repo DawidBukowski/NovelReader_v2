@@ -6,12 +6,28 @@ part of 'library_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$savedArticlesHash() => r'b21880e9f2d84a3cedfbaa821a91a96284880c2d';
+String _$libraryRepositoryHash() => r'866b25d840bb169f12e5a9bca19b313a34897b56';
+
+/// See also [libraryRepository].
+@ProviderFor(libraryRepository)
+final libraryRepositoryProvider =
+    AutoDisposeFutureProvider<LibraryRepository>.internal(
+  libraryRepository,
+  name: r'libraryRepositoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$libraryRepositoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef LibraryRepositoryRef = AutoDisposeFutureProviderRef<LibraryRepository>;
+String _$savedArticlesHash() => r'2a7aad1e025ca7ba73de02899949d1fb29d809a5';
 
 /// See also [savedArticles].
 @ProviderFor(savedArticles)
 final savedArticlesProvider =
-    AutoDisposeFutureProvider<List<SavedArticleDto>>.internal(
+    AutoDisposeFutureProvider<List<SavedArticle>>.internal(
   savedArticles,
   name: r'savedArticlesProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,8 +37,8 @@ final savedArticlesProvider =
   allTransitiveDependencies: null,
 );
 
-typedef SavedArticlesRef = AutoDisposeFutureProviderRef<List<SavedArticleDto>>;
-String _$updateProgressHash() => r'f7c9cacdb776dfc76e12b77b0d8ebff6e542b651';
+typedef SavedArticlesRef = AutoDisposeFutureProviderRef<List<SavedArticle>>;
+String _$articleByIdHash() => r'83f59c46ad04f61fe2402d627d4fc744375fd576';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -45,33 +61,30 @@ class _SystemHash {
   }
 }
 
-/// See also [updateProgress].
-@ProviderFor(updateProgress)
-const updateProgressProvider = UpdateProgressFamily();
+/// See also [articleById].
+@ProviderFor(articleById)
+const articleByIdProvider = ArticleByIdFamily();
 
-/// See also [updateProgress].
-class UpdateProgressFamily extends Family<AsyncValue<void>> {
-  /// See also [updateProgress].
-  const UpdateProgressFamily();
+/// See also [articleById].
+class ArticleByIdFamily extends Family<AsyncValue<SavedArticle?>> {
+  /// See also [articleById].
+  const ArticleByIdFamily();
 
-  /// See also [updateProgress].
-  UpdateProgressProvider call({
-    required int articleId,
-    required int segmentIndex,
-  }) {
-    return UpdateProgressProvider(
-      articleId: articleId,
-      segmentIndex: segmentIndex,
+  /// See also [articleById].
+  ArticleByIdProvider call(
+    int id,
+  ) {
+    return ArticleByIdProvider(
+      id,
     );
   }
 
   @override
-  UpdateProgressProvider getProviderOverride(
-    covariant UpdateProgressProvider provider,
+  ArticleByIdProvider getProviderOverride(
+    covariant ArticleByIdProvider provider,
   ) {
     return call(
-      articleId: provider.articleId,
-      segmentIndex: provider.segmentIndex,
+      provider.id,
     );
   }
 
@@ -87,137 +100,110 @@ class UpdateProgressFamily extends Family<AsyncValue<void>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'updateProgressProvider';
+  String? get name => r'articleByIdProvider';
 }
 
-/// See also [updateProgress].
-class UpdateProgressProvider extends AutoDisposeFutureProvider<void> {
-  /// See also [updateProgress].
-  UpdateProgressProvider({
-    required int articleId,
-    required int segmentIndex,
-  }) : this._internal(
-          (ref) => updateProgress(
-            ref as UpdateProgressRef,
-            articleId: articleId,
-            segmentIndex: segmentIndex,
+/// See also [articleById].
+class ArticleByIdProvider extends AutoDisposeFutureProvider<SavedArticle?> {
+  /// See also [articleById].
+  ArticleByIdProvider(
+    int id,
+  ) : this._internal(
+          (ref) => articleById(
+            ref as ArticleByIdRef,
+            id,
           ),
-          from: updateProgressProvider,
-          name: r'updateProgressProvider',
+          from: articleByIdProvider,
+          name: r'articleByIdProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$updateProgressHash,
-          dependencies: UpdateProgressFamily._dependencies,
+                  : _$articleByIdHash,
+          dependencies: ArticleByIdFamily._dependencies,
           allTransitiveDependencies:
-              UpdateProgressFamily._allTransitiveDependencies,
-          articleId: articleId,
-          segmentIndex: segmentIndex,
+              ArticleByIdFamily._allTransitiveDependencies,
+          id: id,
         );
 
-  UpdateProgressProvider._internal(
+  ArticleByIdProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
     required super.allTransitiveDependencies,
     required super.debugGetCreateSourceHash,
     required super.from,
-    required this.articleId,
-    required this.segmentIndex,
+    required this.id,
   }) : super.internal();
 
-  final int articleId;
-  final int segmentIndex;
+  final int id;
 
   @override
   Override overrideWith(
-    FutureOr<void> Function(UpdateProgressRef provider) create,
+    FutureOr<SavedArticle?> Function(ArticleByIdRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: UpdateProgressProvider._internal(
-        (ref) => create(ref as UpdateProgressRef),
+      override: ArticleByIdProvider._internal(
+        (ref) => create(ref as ArticleByIdRef),
         from: from,
         name: null,
         dependencies: null,
         allTransitiveDependencies: null,
         debugGetCreateSourceHash: null,
-        articleId: articleId,
-        segmentIndex: segmentIndex,
+        id: id,
       ),
     );
   }
 
   @override
-  AutoDisposeFutureProviderElement<void> createElement() {
-    return _UpdateProgressProviderElement(this);
+  AutoDisposeFutureProviderElement<SavedArticle?> createElement() {
+    return _ArticleByIdProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is UpdateProgressProvider &&
-        other.articleId == articleId &&
-        other.segmentIndex == segmentIndex;
+    return other is ArticleByIdProvider && other.id == id;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, articleId.hashCode);
-    hash = _SystemHash.combine(hash, segmentIndex.hashCode);
+    hash = _SystemHash.combine(hash, id.hashCode);
 
     return _SystemHash.finish(hash);
   }
 }
 
-mixin UpdateProgressRef on AutoDisposeFutureProviderRef<void> {
-  /// The parameter `articleId` of this provider.
-  int get articleId;
-
-  /// The parameter `segmentIndex` of this provider.
-  int get segmentIndex;
+mixin ArticleByIdRef on AutoDisposeFutureProviderRef<SavedArticle?> {
+  /// The parameter `id` of this provider.
+  int get id;
 }
 
-class _UpdateProgressProviderElement
-    extends AutoDisposeFutureProviderElement<void> with UpdateProgressRef {
-  _UpdateProgressProviderElement(super.provider);
+class _ArticleByIdProviderElement
+    extends AutoDisposeFutureProviderElement<SavedArticle?>
+    with ArticleByIdRef {
+  _ArticleByIdProviderElement(super.provider);
 
   @override
-  int get articleId => (origin as UpdateProgressProvider).articleId;
-  @override
-  int get segmentIndex => (origin as UpdateProgressProvider).segmentIndex;
+  int get id => (origin as ArticleByIdProvider).id;
 }
 
-String _$articleSaverHash() => r'44f7fd9b910f113a68f4a550cb9af76f126c220c';
+String _$deleteArticleUseCaseHash() =>
+    r'81ef8414bd519354afb440a69e3b5d66aeba01ab';
 
-/// See also [ArticleSaver].
-@ProviderFor(ArticleSaver)
-final articleSaverProvider =
-    AutoDisposeNotifierProvider<ArticleSaver, AsyncValue<void>>.internal(
-  ArticleSaver.new,
-  name: r'articleSaverProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$articleSaverHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$ArticleSaver = AutoDisposeNotifier<AsyncValue<void>>;
-String _$articleDeleterHash() => r'd58dc9b32a6a80a306ccc8bf3b3eecf107b0b941';
-
-/// See also [ArticleDeleter].
-@ProviderFor(ArticleDeleter)
-final articleDeleterProvider =
-    AutoDisposeNotifierProvider<ArticleDeleter, AsyncValue<void>>.internal(
-  ArticleDeleter.new,
-  name: r'articleDeleterProvider',
+/// See also [DeleteArticleUseCase].
+@ProviderFor(DeleteArticleUseCase)
+final deleteArticleUseCaseProvider =
+    AutoDisposeNotifierProvider<DeleteArticleUseCase, void>.internal(
+  DeleteArticleUseCase.new,
+  name: r'deleteArticleUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$articleDeleterHash,
+      : _$deleteArticleUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ArticleDeleter = AutoDisposeNotifier<AsyncValue<void>>;
+typedef _$DeleteArticleUseCase = AutoDisposeNotifier<void>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member
