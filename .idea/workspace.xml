@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="projekt bez errorów">
+    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="claude.md">
+      <change afterPath="$PROJECT_DIR$/SKILL.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/html_fetcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/html_fetcher.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/readability_parser.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/readability_parser.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/presentation/screens/add_url_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/presentation/screens/add_url_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +23,7 @@
   </component>
   <component name="CopilotPersistence">
     <persistenceIdMap>
+      <entry key="_C:/Users/dawib/IdeaProjects/NovelReader_v2" value="3D23E1m0JL5WGbqhtKWYKowscMq" />
       <entry key="_C:/Users/dawib/StudioProjects/NovelReader_v2" value="3CkguohvqOCLSWNCEQMrjHNeHJ4" />
     </persistenceIdMap>
   </component>
@@ -53,12 +52,12 @@
     &quot;assignee&quot;: &quot;Alucart558&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Alucart558/NovelReader_v2.git&quot;,
-    &quot;accountId&quot;: &quot;25e9d4ce-3ac9-47b7-a655-b522a752963d&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Alucart558/NovelReader_v2.git",
+    "accountId": "786157bc-d2ce-41ba-a360-817daa9c5b1b"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -71,27 +70,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\dawib\\AppData\\Roaming\\Google\\AndroidStudio2025.3.4\\plugins\\Shell Script\\shellcheck.exe&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;io.flutter.project.isFirstOpen&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\dawib\\AppData\\Roaming\\Google\\AndroidStudio2025.3.4\\plugins\\Shell Script\\shellcheck.exe",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "io.flutter.project.isFirstOpen": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\dawib\StudioProjects\NovelReader_v2" />
@@ -111,6 +115,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1776935207714</updated>
+      <workItem from="1777466217555" duration="3097000" />
     </task>
     <task id="LOCAL-00001" summary="nie działający krok 1">
       <option name="closed" value="true" />
@@ -184,8 +189,19 @@
       <option name="project" value="LOCAL" />
       <updated>1777289737286</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="claude.md">
+      <option name="closed" value="true" />
+      <created>1777468738712</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1777468738713</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="nie działający krok 1" />
@@ -197,7 +213,8 @@
     <MESSAGE value="wszystko z kroku 4 działa" />
     <MESSAGE value="nieskończony step 5 , zabrakło mi tokenów" />
     <MESSAGE value="projekt bez errorów" />
-    <option name="LAST_COMMIT_MESSAGE" value="projekt bez errorów" />
+    <MESSAGE value="claude.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="claude.md" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
