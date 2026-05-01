@@ -54,4 +54,6 @@ Warnings — Fix When Convenient
 
 8. TimeoutException reaches the generic fallback
    A 20-second timeout will produce a TimeoutException, but none of the _friendlyError branches match it — the user sees the generic message. Add a branch or catch it in HtmlFetcher and rethrow as a domain exception.
+9. unused_import w lib/features/tts_player/... — to jedyne „czyste” ostrzeżenia z ręcznego kodu.
+10. surfaceVariant → surfaceContainerHighest i withOpacity → withValues() przy okazji refaktoru UI.
 

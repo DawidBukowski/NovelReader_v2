@@ -17,7 +17,7 @@ Future<OpenReaderAudioHandler> audioHandler(AudioHandlerRef ref) async {
       androidNotificationChannelName: 'OpenReader',
       androidNotificationIcon: 'mipmap/ic_launcher',
       androidNotificationOngoing: true,
-      androidStopForegroundOnPause: false,
+      androidStopForegroundOnPause: true,
     ),
   );
 }

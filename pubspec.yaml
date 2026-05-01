@@ -45,9 +45,10 @@ dependencies:
   # ── Networking & Web Scraping ──────────────────────────────
   http: ^1.2.1                      # HTTP client for remote JSON + HTML fetch
   html: ^0.15.4                     # HTML parser (used for Readability logic)
+  flutter_inappwebview: ^6.1.5      # Headless WebView for JS-rendered pages
 
   # ── File Handling ──────────────────────────────────────────
-  file_picker: ^8.0.7               # Import local .zip voice model packs
+  file_picker: ^11.0.2              # Import local .zip voice model packs
   archive: ^3.6.1                   # Unzip .zip voice packs in-memory
   path: ^1.9.0                      # Cross-platform path manipulation
 
@@ -58,7 +59,7 @@ dependencies:
   # ── Utilities ─────────────────────────────────────────────
   rxdart: ^0.28.0                   # BehaviorSubject / stream operators
   uuid: ^4.4.0                      # Unique IDs for saved articles
-  share_plus: ^9.0.0                # Share article text externally
+  share_plus: ^12.0.2               # Share article text externally
   url_launcher: ^6.3.0              # Open source URL in browser
   intl: ^0.19.0                     # Date/time formatting in library view
   flutter_slidable: ^3.1.0          # Swipe-to-delete in library list

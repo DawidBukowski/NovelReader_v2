@@ -3,8 +3,8 @@
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import '../../data/datasources/html_fetcher.dart';
 import '../../data/datasources/readability_parser.dart';
+import '../../data/datasources/smart_fetcher.dart';
 import '../../../library/domain/entities/saved_article.dart';
 import '../../../library/presentation/providers/library_providers.dart';
 
@@ -16,7 +16,7 @@ class FetchAndSaveArticleUseCase extends _$FetchAndSaveArticleUseCase {
   void build() {}
 
   Future<int> fetchAndSave(String url) async {
-    final html = await HtmlFetcher().fetch(url);
+    final html = await SmartFetcher().fetch(url);
     final (title, body) = ReadabilityParser().parse(html);
 
     if (body.length < 100) {

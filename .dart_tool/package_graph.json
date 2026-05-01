@@ -12,6 +12,7 @@
         "cached_network_image",
         "file_picker",
         "flutter",
+        "flutter_inappwebview",
         "flutter_riverpod",
         "flutter_slidable",
         "freezed_annotation",
@@ -213,7 +214,7 @@
     },
     {
       "name": "share_plus",
-      "version": "9.0.0",
+      "version": "12.0.2",
       "dependencies": [
         "cross_file",
         "ffi",
@@ -275,9 +276,10 @@
     },
     {
       "name": "file_picker",
-      "version": "8.0.7",
+      "version": "11.0.2",
       "dependencies": [
         "cross_file",
+        "dbus",
         "ffi",
         "flutter",
         "flutter_plugin_android_lifecycle",
@@ -286,6 +288,19 @@
         "plugin_platform_interface",
         "web",
         "win32"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview",
+      "version": "6.1.5",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview_android",
+        "flutter_inappwebview_ios",
+        "flutter_inappwebview_macos",
+        "flutter_inappwebview_platform_interface",
+        "flutter_inappwebview_web",
+        "flutter_inappwebview_windows"
       ]
     },
     {
@@ -971,7 +986,7 @@
     },
     {
       "name": "web",
-      "version": "0.5.1",
+      "version": "1.1.1",
       "dependencies": []
     },
     {
@@ -989,7 +1004,7 @@
     },
     {
       "name": "share_plus_platform_interface",
-      "version": "4.0.0",
+      "version": "6.1.0",
       "dependencies": [
         "cross_file",
         "flutter",
@@ -1032,6 +1047,57 @@
       "version": "2.0.34",
       "dependencies": [
         "flutter"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview_windows",
+      "version": "0.6.0",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview_platform_interface"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview_web",
+      "version": "1.1.2",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview_platform_interface",
+        "flutter_web_plugins",
+        "web"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview_macos",
+      "version": "1.1.2",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview_platform_interface"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview_ios",
+      "version": "1.1.2",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview_platform_interface"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview_android",
+      "version": "1.1.3",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview_platform_interface"
+      ]
+    },
+    {
+      "name": "flutter_inappwebview_platform_interface",
+      "version": "1.3.0+1",
+      "dependencies": [
+        "flutter",
+        "flutter_inappwebview_internal_annotations",
+        "plugin_platform_interface"
       ]
     },
     {
@@ -1377,6 +1443,11 @@
       ]
     },
     {
+      "name": "flutter_inappwebview_internal_annotations",
+      "version": "1.3.0",
+      "dependencies": []
+    },
+    {
       "name": "platform",
       "version": "3.1.6",
       "dependencies": []
@@ -1525,6 +1596,33 @@
         "collection",
         "meta",
         "pub_semver"
+      ]
+    },
+    {
+      "name": "dbus",
+      "version": "0.7.12",
+      "dependencies": [
+        "args",
+        "ffi",
+        "meta",
+        "xml"
+      ]
+    },
+    {
+      "name": "xml",
+      "version": "6.6.1",
+      "dependencies": [
+        "collection",
+        "meta",
+        "petitparser"
+      ]
+    },
+    {
+      "name": "petitparser",
+      "version": "7.0.2",
+      "dependencies": [
+        "collection",
+        "meta"
       ]
     }
   ],
