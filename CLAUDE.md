@@ -59,3 +59,9 @@ Run `build_runner` after changing any annotated class (`@riverpod`, `@collection
 ### Linting
 
 `analysis_options.yaml` enables strict mode (`strict-casts`, `strict-raw-types`, `strict-inference`). `avoid_print`, `prefer_const_constructors`, `prefer_final_locals` are enforced — use `debugPrint` instead of `print`.
+
+## Skills
+
+Use `/flutter` for code generation, error diagnosis, and clean rebuild workflows.
+Use `/git` for commits, branches, and PRs.
+Use `/debugging` for systematic root cause analysis.
