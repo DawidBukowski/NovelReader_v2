@@ -9,29 +9,15 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="claude.md">
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/package_graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/package_graph.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.dart_tool/version" beforeDir="false" afterPath="$PROJECT_DIR$/.dart_tool/version" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/.flutter-plugins-dependencies" afterDir="false" />
+    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="Dodano nowy fetcher WebView i fallback">
+      <change afterPath="$PROJECT_DIR$/notes/tts_debug.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/kotlin/com/example/open_reader/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/kotlin/com/example/open_reader/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/core/audio/audio_handler_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/core/audio/audio_handler_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/voice_manager_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/voice_manager_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/presentation/providers/scraper_providers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/presentation/providers/scraper_providers.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/linux/flutter/generated_plugins.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.h" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugin_registrant.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/windows/flutter/generated_plugins.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/.888f7d4c4f0c59b29f1d819d935c0e7c4e7cc5df-audit.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/.888f7d4c4f0c59b29f1d819d935c0e7c4e7cc5df-audit.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +97,7 @@
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -217,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777468738713</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Dodano nowy fetcher WebView i fallback">
+      <option name="closed" value="true" />
+      <created>1777669957624</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1777669957624</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +228,8 @@
     <MESSAGE value="nieskończony step 5 , zabrakło mi tokenów" />
     <MESSAGE value="projekt bez errorów" />
     <MESSAGE value="claude.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="claude.md" />
+    <MESSAGE value="Dodano nowy fetcher WebView i fallback" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodano nowy fetcher WebView i fallback" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>

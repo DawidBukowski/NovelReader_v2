@@ -32,6 +32,7 @@ void sherpaOnnxIsolateEntryPoint(SendPort rootSendPort) {
     // ── Bootstrap ──────────────────────────────────────────────────────────
       case IsolateMessage.kBootstrap:
         try {
+          sherpa.initBindings();
           currentSpeed = (msg['speed'] as num).toDouble();
           tts = _buildEngine(
             architecture: msg['architecture'] as String,

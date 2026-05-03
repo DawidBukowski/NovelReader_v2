@@ -6,6 +6,7 @@ import 'dart:isolate';
 
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../domain/entities/voice_model.dart';
 import 'isolate_messages.dart';
@@ -55,6 +56,7 @@ class SherpaOnnxService {
   // ── Lifecycle ──────────────────────────────────────────────────────────────
 
   Future<void> initialise(VoiceModel voice) async {
+    debugPrint('[TTS] initialise voice=${voice.id} model=${voice.onnxModelPath}');
     assert(voice.status == VoiceStatus.local);
     assert(voice.onnxModelPath != null && voice.configJsonPath != null);
 
@@ -92,6 +94,7 @@ class SherpaOnnxService {
           });
 
         case IsolateMessage.kSegmentReady:
+          debugPrint('[TTS] isolate msg type=$type');
           _resultController.add(SynthesisResult(
             segmentIndex: msg['segmentIndex'] as int,
             wavFilePath: msg['wavFilePath'] as String,
@@ -99,6 +102,7 @@ class SherpaOnnxService {
           ));
 
         case IsolateMessage.kSegmentError:
+          debugPrint('[TTS] isolate error segment=${msg['segmentIndex']} error=${msg['error']}');
           _errorController.add(SynthesisError(
             segmentIndex: msg['segmentIndex'] as int,
             message: msg['error'] as String,
@@ -124,6 +128,7 @@ class SherpaOnnxService {
   }) async {
     _assertInitialised();
     final wavPath = await _tempWavPath(segmentIndex);
+    debugPrint('[TTS] synthesize send segment=$segmentIndex');
     _isolateSendPort!.send({
       IsolateMessage.kType: IsolateMessage.kSynthesize,
       'segmentIndex': segmentIndex,

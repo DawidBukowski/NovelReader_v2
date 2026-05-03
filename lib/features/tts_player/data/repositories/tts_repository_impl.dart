@@ -8,6 +8,7 @@
 import 'dart:async';
 
 import 'package:rxdart/rxdart.dart';
+import 'package:flutter/foundation.dart';
 
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/player_state.dart';
@@ -263,6 +264,10 @@ class TtsRepositoryImpl implements TtsRepository {
       if (!_submittedIndices.contains(i) &&
           _state.segments[i].synthesisState == SegmentSynthesisState.pending) {
         _markSegmentState(i, SegmentSynthesisState.synthesising);
+        debugPrint(
+          '[TTS] submit segment=$i status=${_state.segments[i].synthesisState} '
+              'text="${_state.segments[i].text.substring(0, _state.segments[i].text.length.clamp(0, 40))}"',
+        );
         _synth.synthesize(
           segmentIndex: i,
           text: _state.segments[i].text,
@@ -274,6 +279,11 @@ class TtsRepositoryImpl implements TtsRepository {
   }
 
   void _onSegmentReady(SynthesisResult result) {
+    debugPrint(
+      '[TTS] ready segment=${result.segmentIndex} '
+          'path=${result.wavFilePath} '
+          'durationMs=${result.durationMs}',
+    );
     final segments = List<SentenceSegment>.from(_state.segments);
     segments[result.segmentIndex] = segments[result.segmentIndex].copyWith(
       synthesisState: SegmentSynthesisState.ready,
@@ -299,6 +309,9 @@ class TtsRepositoryImpl implements TtsRepository {
   }
 
   void _onSegmentError(SynthesisError error) {
+    debugPrint(
+      '[TTS] error segment=${error.segmentIndex} message=${error.message}',
+    );
     if (error.segmentIndex == -1) {
       // Engine-level failure.
       _emit(_state.copyWith(

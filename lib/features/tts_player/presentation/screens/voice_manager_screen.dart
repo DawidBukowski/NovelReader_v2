@@ -164,6 +164,7 @@ class _VoiceTile extends ConsumerWidget {
         final uc =
         await ref.read(selectVoiceUseCaseProvider.future);
         await uc(voice.id);
+        await reinitialiseEngine(ref);
         ref.invalidate(voiceListProvider);
         ref.invalidate(selectedVoiceProvider);
       }
@@ -224,6 +225,7 @@ class _TrailingAction extends ConsumerWidget {
             final uc =
             await ref.read(selectVoiceUseCaseProvider.future);
             await uc(voice.id);
+            await reinitialiseEngine(ref);
             ref.invalidate(voiceListProvider);
             ref.invalidate(selectedVoiceProvider);
           } else if (action == 'delete') {

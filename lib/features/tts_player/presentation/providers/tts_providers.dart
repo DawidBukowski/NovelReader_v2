@@ -54,7 +54,7 @@ Future<TtsRepository> ttsRepository(TtsRepositoryRef ref) async {
   // ── Auto-init the Isolate with the currently selected voice ──────────────
   // This runs once on first build. When the user changes voice,
   // selectVoiceUseCase calls _reinitialiseEngine() directly (see below).
-  final voice = await ref.watch(selectedVoiceProvider.future);
+  final voice = await ref.read(selectedVoiceProvider.future);
   if (voice != null && voice.status == VoiceStatus.local) {
     await synthService.initialise(voice);
   }
