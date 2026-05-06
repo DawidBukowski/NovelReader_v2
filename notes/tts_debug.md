@@ -56,3 +56,34 @@
 ## Nowe logi (po metadata)
 - `sherpa-onnx`: brak `n_speakers` w metadata (`offline-tts-vits-model.cc:Init:173`).
 - Plan: dodać `n_speakers = 1` do ONNX i sprawdzić ponownie.
+
+
+## Aktualny status
+- `espeak-ng-data` jest obecne na telefonie, ale zawiera tylko `lang` i `voices`.
+- Brakuje `phontab`, przez co `sherpa-onnx` nie może zbudować offline TTS.
+- Błąd: `Failed to create offline tts. Please check your config`
+
+## Wniosek
+- Problem nie leży już w `sample_rate` ani w crashu aplikacji.
+- Trzeba wgrać pełne, kompletne `espeak-ng-data`, a nie tylko częściowy folder.
+
+## Doprecyzowanie o repo `espeak-ng-master`
+- `docs/phontab.md` to tylko dokumentacja, nie runtime data.
+- W katalogu `espeak-ng-data` w tym repo są na razie tylko `lang` i `voices`.
+- Nie ma tam osobnego pliku `phontab`, a właśnie tego szuka `sherpa-onnx`.
+- Wniosek: samo to repo w tej formie nie daje jeszcze kompletnego `vits-data-dir` dla modelu Amy.
+
+## Następny krok
+- Zdobyć komplet danych eSpeak, który faktycznie zawiera `phontab`, albo
+- przełączyć się na model / konfigurację, która nie wymaga `vits-data-dir`.
+
+## Doprecyzowanie po sprawdzeniu repo eSpeak NG
+- `docs/phontab.md` to tylko dokumentacja formatu, nie runtime data.
+- W checkoutcie `espeak-ng-master` katalog `espeak-ng-data` zawiera obecnie tylko `lang` i `voices`.
+- Szukany jest zwykły plik runtime o nazwie `phontab` (bez rozszerzenia), a nie dokument `phontab.md`.
+- Wniosek: do testu TTS potrzebny jest pełny, wygenerowany / zainstalowany pakiet danych eSpeak NG, nie sam katalog ze źródłami lub docs.
+
+## Jak rozpoznać poprawny pakiet
+- W folderze `espeak-ng-data` powinien być plik `phontab`.
+- Jeśli po uruchomieniu dalej pojawia się brak innego pliku, to znaczy że kopia nadal jest niekompletna i trzeba dołożyć brakującą część z tego samego runtime bundle.
+
