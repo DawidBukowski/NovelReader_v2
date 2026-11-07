@@ -1,8 +1,19 @@
 import 'package:http/http.dart' as http;
 
 class HtmlFetcher {
+  static Uri validateUrl(String url) {
+    final uri = Uri.tryParse(url);
+    if (uri == null ||
+        (uri.scheme.toLowerCase() != 'http' &&
+            uri.scheme.toLowerCase() != 'https') ||
+        uri.host.isEmpty) {
+      throw ArgumentError('Invalid or non-HTTP URL: $url');
+    }
+    return uri;
+  }
+
   Future<String> fetch(String url) async {
-    final uri = Uri.parse(url);
+    final uri = validateUrl(url);
 
     final response = await http.get(
       uri,
