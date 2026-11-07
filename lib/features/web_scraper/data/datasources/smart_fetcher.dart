@@ -7,6 +7,7 @@ import 'webview_fetcher.dart';
 /// when the server rejects the plain HTTP request outright.
 class SmartFetcher {
   Future<String> fetch(String url) async {
+    HtmlFetcher.validateUrl(url);
     try {
       final html = await HtmlFetcher().fetch(url);
       final (_, body) = ReadabilityParser().parse(html);
