@@ -30,15 +30,15 @@ class _AddUrlScreenState extends ConsumerState<AddUrlScreen> {
   String _friendlyError(Object e) {
     final msg = e.toString();
     if (msg.contains('JavaScript') || msg.contains('block bots')) {
-      return 'Nie udało się pobrać treści. Ta strona może wymagać JavaScript lub blokować boty.';
+      return 'Could not fetch content. This page may require JavaScript or block automated access.';
     }
     if (msg.contains('HTTP')) {
-      return 'Nie udało się pobrać strony (błąd HTTP).';
+      return 'Failed to fetch the page (HTTP error). Please check the URL and try again.';
     }
     if (msg.contains('empty')) {
-      return 'Strona zwróciła pustą treść.';
+      return 'The page returned no content.';
     }
-    return 'Nie udało się pobrać i zapisać artykułu.';
+    return 'Failed to fetch and save the article. Please try a different URL.';
   }
 
   Future<void> _fetch() async {
@@ -60,7 +60,7 @@ class _AddUrlScreenState extends ConsumerState<AddUrlScreen> {
         );
       }
     } catch (e) {
-      setState(() => _errorMessage = _friendlyError(e));
+      if (mounted) setState(() => _errorMessage = _friendlyError(e));
     } finally {
       if (mounted) setState(() => _isLoading = false);
     }
