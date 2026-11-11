@@ -30,15 +30,15 @@ class _AddUrlScreenState extends ConsumerState<AddUrlScreen> {
   String _friendlyError(Object e) {
     final msg = e.toString();
     if (msg.contains('JavaScript') || msg.contains('block bots')) {
-      return 'Failed to download content. This site might require JavaScript or block bots.';
+      return 'Could not fetch content. This page may require JavaScript or block automated access.';
     }
     if (msg.contains('HTTP')) {
-      return 'Site download failed (HTTP error)';
+      return 'Failed to fetch the page (HTTP error). Please check the URL and try again.';
     }
     if (msg.contains('empty')) {
-      return 'The site returned empty content.';
+      return 'The page returned no content.';
     }
-    return 'Failed to download and stage the article';
+    return 'Failed to fetch and save the article. Please try a different URL.';
   }
 
   Future<void> _fetch() async {
