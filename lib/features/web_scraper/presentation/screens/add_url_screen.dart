@@ -32,7 +32,7 @@ class _AddUrlScreenState extends ConsumerState<AddUrlScreen> {
     if (msg.contains('JavaScript') || msg.contains('block bots')) {
       return 'Could not fetch content. This page may require JavaScript or block automated access.';
     }
-    if (msg.contains('HTTP')) {
+    if (msg.contains('Failed to fetch URL (HTTP ')) {
       return 'Failed to fetch the page (HTTP error). Please check the URL and try again.';
     }
     if (msg.contains('empty')) {
