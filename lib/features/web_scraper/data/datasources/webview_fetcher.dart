@@ -3,6 +3,8 @@ import 'dart:ui';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
+import 'html_fetcher.dart';
+
 class WebViewFetcher {
   // Mobile Chrome UA — indistinguishable from a real Android browser.
   static const _userAgent =
@@ -10,12 +12,13 @@ class WebViewFetcher {
       '(KHTML, like Gecko) Chrome/124.0.6367.82 Mobile Safari/537.36';
 
   Future<String> fetch(String url) async {
+    final validatedUrl = HtmlFetcher.validateUrl(url);
     final completer = Completer<String>();
     HeadlessInAppWebView? webView;
 
     webView = HeadlessInAppWebView(
       initialSize: const Size(1366, 768),
-      initialUrlRequest: URLRequest(url: WebUri(url)),
+      initialUrlRequest: URLRequest(url: WebUri(validatedUrl.toString())),
       initialSettings: InAppWebViewSettings(
         javaScriptEnabled: true,
         userAgent: _userAgent,

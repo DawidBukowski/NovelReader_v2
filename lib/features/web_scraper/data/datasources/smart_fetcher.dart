@@ -7,16 +7,17 @@ import 'webview_fetcher.dart';
 /// when the server rejects the plain HTTP request outright.
 class SmartFetcher {
   Future<String> fetch(String url) async {
-    final normalizedUrl = HtmlFetcher.validateUrl(url).toString();
     try {
-      final html = await HtmlFetcher().fetch(normalizedUrl);
+      final html = await HtmlFetcher().fetch(url);
       final (_, body) = ReadabilityParser().parse(html);
       // 300-char threshold: below this the content is likely a shell page
       // with no real article text (e.g. a JS-only SPA or a bot-detection wall).
       if (body.length >= 300) return html;
+    } on ArgumentError {
+      rethrow;
     } catch (_) {
       // HTTP fetch failed or parser found too little content — fall through.
     }
-    return WebViewFetcher().fetch(normalizedUrl);
+    return WebViewFetcher().fetch(url);
   }
 }
