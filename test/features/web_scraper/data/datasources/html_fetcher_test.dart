@@ -83,4 +83,52 @@ void main() {
       );
     });
   });
+
+  group('HtmlFetcher response handling', () {
+    for (final statusCode in [404, 500]) {
+      test('throws for HTTP $statusCode', () async {
+        await expectLater(
+          http.runWithClient(
+                () => HtmlFetcher().fetch('https://example.com/article'),
+                () => MockClient(
+                  (_) async => http.Response(
+                '<html>Error</html>',
+                statusCode,
+                headers: {'content-type': 'text/html'},
+              ),
+            ),
+          ),
+          throwsA(
+            isA<Exception>().having(
+                  (error) => error.toString(),
+              'message',
+              contains('HTTP $statusCode'),
+            ),
+          ),
+        );
+      });
+    }
+
+    test('throws when the HTML response is empty', () async {
+      await expectLater(
+        http.runWithClient(
+              () => HtmlFetcher().fetch('https://example.com/article'),
+              () => MockClient(
+                (_) async => http.Response(
+              ' \n\t',
+              200,
+              headers: {'content-type': 'text/html'},
+            ),
+          ),
+        ),
+        throwsA(
+          isA<Exception>().having(
+                (error) => error.toString(),
+            'message',
+            contains('Fetched page is empty.'),
+          ),
+        ),
+      );
+    });
+  });
 }
