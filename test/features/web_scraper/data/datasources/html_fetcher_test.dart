@@ -59,7 +59,12 @@ void main() {
         'http://[::]',
         'http://[fc00::1]',
         'http://[fe80::1]',
+        'http://[fec0::1]',
+        'http://[2001:db8::1]',
         'http://[::ffff:192.168.1.1]',
+        'http://[::ffff:0:127.0.0.1]',
+        'http://[64:ff9b::127.0.0.1]',
+        'http://[2002:7f00:0001::]',
       ]) {
         expect(() => HtmlFetcher.validateUrl(url), throwsArgumentError);
       }
