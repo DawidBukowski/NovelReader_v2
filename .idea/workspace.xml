@@ -9,15 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="Dodano nowy fetcher WebView i fallback">
-      <change afterPath="$PROJECT_DIR$/notes/tts_debug.md" afterDir="false" />
+    <list default="true" id="70b65b1b-58ba-4b5f-903b-3e1ef0a6bfa2" name="Changes" comment="Done 1st and 2nd point from the to-do list.&#10;Messages in _friendlyError has been translated from Polish to English.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_isolate.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/datasources/sherpa_onnx_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/data/repositories/tts_repository_impl.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/providers/tts_providers.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/voice_manager_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/tts_player/presentation/screens/voice_manager_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/.888f7d4c4f0c59b29f1d819d935c0e7c4e7cc5df-audit.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs/.888f7d4c4f0c59b29f1d819d935c0e7c4e7cc5df-audit.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/html_fetcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/html_fetcher.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/smart_fetcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/data/datasources/smart_fetcher.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/features/web_scraper/presentation/screens/add_url_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/features/web_scraper/presentation/screens/add_url_screen.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +46,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -60,10 +61,69 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Alucart558/NovelReader_v2.git&quot;,
-    &quot;accountId&quot;: &quot;f0019466-70f0-47e3-a655-f9aa7fca1e3c&quot;
+    &quot;url&quot;: &quot;https://github.com/DawidBukowski/NovelReader_v2&quot;,
+    &quot;accountId&quot;: &quot;33c1c89b-871f-492b-897c-306cb8ef1115&quot;
   }
 }</component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.000099762582865" />
+      <entry key="MS500" value="1.2546261966608845" />
+      <entry key="S2" value="3.434973397868474" />
+      <entry key="S5" value="6.9165611850765885" />
+      <entry key="S10" value="11.035463145007538" />
+      <entry key="S30" value="19.575597570849624" />
+      <entry key="S60" value="24.773582747430897" />
+      <entry key="M2" value="30.613231175492857" />
+      <entry key="M5" value="45.62059946002843" />
+      <entry key="M10" value="66.02335477772179" />
+      <entry key="M15" value="79.74140271226243" />
+      <entry key="M30" value="101.50631070589549" />
+      <entry key="H1" value="120.2598283354397" />
+      <entry key="H2" value="136.2236738436421" />
+      <entry key="H4" value="147.96221543946274" />
+      <entry key="D1" value="160.94322793356014" />
+      <entry key="W1" value="163.55254281891334" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9593611451903498" />
+      <entry key="MS500" value="1.244779021964385" />
+      <entry key="S2" value="3.428509367744469" />
+      <entry key="S5" value="6.911395537838734" />
+      <entry key="S10" value="11.031346758914303" />
+      <entry key="S30" value="19.573055097262603" />
+      <entry key="S60" value="24.77190808037081" />
+      <entry key="M2" value="30.61100226460426" />
+      <entry key="M5" value="45.594692082600645" />
+      <entry key="M10" value="65.96785480966092" />
+      <entry key="M15" value="79.68040500772996" />
+      <entry key="M30" value="101.45573740924179" />
+      <entry key="H1" value="120.2271863542412" />
+      <entry key="H2" value="136.2051100166304" />
+      <entry key="H4" value="147.95231145393163" />
+      <entry key="D1" value="160.94148494006998" />
+      <entry key="W1" value="163.5522914752618" />
+    </decayedShown>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -76,32 +136,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\dawib\\AppData\\Roaming\\Google\\AndroidStudio2025.3.4\\plugins\\Shell Script\\shellcheck.exe&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;io.flutter.project.isFirstOpen&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\dawib\\AppData\\Roaming\\Google\\AndroidStudio2025.3.4\\plugins\\Shell Script\\shellcheck.exe",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "Janek",
+    "ignore.virus.scanning.warn.message": "true",
+    "io.flutter.project.isFirstOpen": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/johny/NovelReader",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\dawib\StudioProjects\NovelReader_v2" />
@@ -113,6 +179,13 @@
       <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-ac68fc9d2b05-intellij.indexing.shared.core-IU-263.7307.200" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -216,6 +289,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.dart" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="nie działający krok 1" />

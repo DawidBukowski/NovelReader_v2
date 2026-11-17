@@ -1,8 +1,98 @@
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 
 class HtmlFetcher {
+  static Uri validateUrl(String url) {
+    final trimmedUrl = url.trim();
+    final uri = Uri.tryParse(trimmedUrl);
+    if (uri == null ||
+        (uri.scheme.toLowerCase() != 'http' &&
+            uri.scheme.toLowerCase() != 'https') ||
+        uri.host.isEmpty ||
+        _isNonPublicIpAddress(uri.host)) {
+      throw ArgumentError(
+        'URL must use HTTP(S), include a host, and not target a private IP.',
+      );
+    }
+    return uri;
+  }
+
+  static bool _isNonPublicIpAddress(String host) {
+    var address = host.toLowerCase();
+    if (address.startsWith('[') && address.endsWith(']')) {
+      address = address.substring(1, address.length - 1);
+    }
+
+    final zoneIndex = address.indexOf('%');
+    if (zoneIndex != -1) address = address.substring(0, zoneIndex);
+    final ipAddress = InternetAddress.tryParse(address);
+    if (ipAddress == null) return false;
+
+    final bytes = ipAddress.rawAddress;
+    if (bytes.length == 4) return _isNonPublicIpv4(bytes);
+
+    if (bytes.every((part) => part == 0) ||
+        (bytes.take(15).every((part) => part == 0) && bytes.last == 1)) {
+      return true;
+    }
+    if ((bytes[0] & 0xfe) == 0xfc ||
+        ((bytes[0] & 0xff) == 0xfe && (bytes[1] & 0xc0) == 0x80)) {
+      return true;
+    }
+    if (bytes[0] == 0xfe && (bytes[1] & 0xc0) == 0xc0) return true;
+    if (bytes[0] == 0x20 &&
+        bytes[1] == 0x01 &&
+        bytes[2] == 0x0d &&
+        bytes[3] == 0xb8) {
+      return true;
+    }
+
+    final isIpv4Mapped =
+        bytes.take(10).every((part) => part == 0) &&
+        bytes[10] == 0xff &&
+        bytes[11] == 0xff;
+    final isIpv4Compatible = bytes.take(12).every((part) => part == 0);
+    if (isIpv4Mapped || isIpv4Compatible) {
+      return _isNonPublicIpv4(bytes.sublist(12));
+    }
+
+    final isIpv4Translated =
+        bytes.take(8).every((part) => part == 0) &&
+        bytes[8] == 0xff &&
+        bytes[9] == 0xff &&
+        bytes[10] == 0 &&
+        bytes[11] == 0;
+    if (isIpv4Translated) return _isNonPublicIpv4(bytes.sublist(12));
+
+    final isNat64 =
+        bytes[0] == 0x00 &&
+        bytes[1] == 0x64 &&
+        bytes[2] == 0xff &&
+        bytes[3] == 0x9b &&
+        bytes.sublist(4, 12).every((part) => part == 0);
+    if (isNat64) return _isNonPublicIpv4(bytes.sublist(12));
+
+    if (bytes[0] == 0x20 && bytes[1] == 0x02) {
+      return _isNonPublicIpv4(bytes.sublist(2, 6));
+    }
+    return false;
+  }
+
+  static bool _isNonPublicIpv4(List<int> address) {
+    final first = address[0];
+    final second = address[1];
+    return first == 0 ||
+        first == 10 ||
+        first == 127 ||
+        (first == 100 && second >= 64 && second <= 127) ||
+        (first == 169 && second == 254) ||
+        (first == 172 && second >= 16 && second <= 31) ||
+        (first == 192 && second == 168);
+  }
+
   Future<String> fetch(String url) async {
-    final uri = Uri.parse(url);
+    final uri = validateUrl(url);
 
     final response = await http.get(
       uri,
