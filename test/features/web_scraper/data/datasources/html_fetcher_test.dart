@@ -3,20 +3,23 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:open_reader/features/web_scraper/data/datasources/html_fetcher.dart';
 import 'package:open_reader/features/web_scraper/data/datasources/smart_fetcher.dart';
+import 'package:open_reader/features/web_scraper/data/datasources/webview_fetcher.dart';
 
 void main() {
   test('downloads HTML from the requested URL', () async {
-    final result = await http.runWithClient(
-      () => HtmlFetcher().fetch('  https://example.com/article  '),
-      () => MockClient((request) async {
-        expect(request.url, Uri.parse('https://example.com/article'));
-        return http.Response(
-          '<html><body>Article content</body></html>',
-          200,
-          headers: {'content-type': 'text/html; charset=utf-8'},
-        );
-      }),
-    );
+    final client = MockClient((request) async {
+      expect(request.url, Uri.parse('https://example.com/article'));
+      return http.Response(
+        '<html><body>Article content</body></html>',
+        200,
+        headers: {'content-type': 'text/html; charset=utf-8'},
+      );
+    });
+    addTearDown(client.close);
+
+    final result = await HtmlFetcher(
+      client: client,
+    ).fetch('  https://example.com/article  ');
 
     expect(result, '<html><body>Article content</body></html>');
   });
@@ -34,6 +37,10 @@ void main() {
       expect(
         HtmlFetcher.validateUrl('  https://example.com/article  ').host,
         'example.com',
+      );
+      expect(
+        HtmlFetcher.validateUrl('http://8.8.8.8').host,
+        '8.8.8.8',
       );
     });
 
@@ -65,6 +72,15 @@ void main() {
         'http://[::ffff:0:127.0.0.1]',
         'http://[64:ff9b::127.0.0.1]',
         'http://[2002:7f00:0001::]',
+        'http://localhost',
+        'http://sub.localhost',
+        'http://localhost.',
+        'http://127.0.0.1.',
+        'http://0177.0.0.1',
+        'http://127.1',
+        'http://2130706433',
+        'http://0x7f.0.0.1',
+        'http://[fe80::1%25eth0]',
       ]) {
         expect(() => HtmlFetcher.validateUrl(url), throwsArgumentError);
       }
@@ -87,25 +103,54 @@ void main() {
         throwsArgumentError,
       );
     });
+
+    test(
+      'WebViewFetcher rejects invalid URLs before creating a WebView',
+      () async {
+        await expectLater(
+          WebViewFetcher().fetch('http://localhost'),
+          throwsArgumentError,
+        );
+      },
+    );
+
+    test('HTTP redirects to private addresses are rejected', () async {
+      var requests = 0;
+      final client = MockClient((request) async {
+        requests++;
+        return http.Response(
+          '',
+          302,
+          headers: {'location': 'http://127.0.0.1/'},
+        );
+      });
+      addTearDown(client.close);
+
+      await expectLater(
+        HtmlFetcher(client: client).fetch('https://example.com/article'),
+        throwsArgumentError,
+      );
+      expect(requests, 1);
+    });
   });
 
   group('HtmlFetcher response handling', () {
     for (final statusCode in [404, 500]) {
       test('throws for HTTP $statusCode', () async {
-        await expectLater(
-          http.runWithClient(
-                () => HtmlFetcher().fetch('https://example.com/article'),
-                () => MockClient(
-                  (_) async => http.Response(
-                '<html>Error</html>',
-                statusCode,
-                headers: {'content-type': 'text/html'},
-              ),
-            ),
+        final client = MockClient(
+          (_) async => http.Response(
+            '<html>Error</html>',
+            statusCode,
+            headers: {'content-type': 'text/html'},
           ),
+        );
+        addTearDown(client.close);
+
+        await expectLater(
+          HtmlFetcher(client: client).fetch('https://example.com/article'),
           throwsA(
             isA<Exception>().having(
-                  (error) => error.toString(),
+              (error) => error.toString(),
               'message',
               contains('HTTP $statusCode'),
             ),
@@ -115,20 +160,20 @@ void main() {
     }
 
     test('throws when the HTML response is empty', () async {
-      await expectLater(
-        http.runWithClient(
-              () => HtmlFetcher().fetch('https://example.com/article'),
-              () => MockClient(
-                (_) async => http.Response(
-              ' \n\t',
-              200,
-              headers: {'content-type': 'text/html'},
-            ),
-          ),
+      final client = MockClient(
+        (_) async => http.Response(
+          ' \n\t',
+          200,
+          headers: {'content-type': 'text/html'},
         ),
+      );
+      addTearDown(client.close);
+
+      await expectLater(
+        HtmlFetcher(client: client).fetch('https://example.com/article'),
         throwsA(
           isA<Exception>().having(
-                (error) => error.toString(),
+            (error) => error.toString(),
             'message',
             contains('Fetched page is empty.'),
           ),
